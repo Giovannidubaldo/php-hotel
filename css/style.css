@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header {
+    background-color: #003b95;
+    color: #fff;
+    padding: 20px 0;
+}
