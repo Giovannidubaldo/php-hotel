@@ -23,30 +23,39 @@
     <main>
         <div class="container">
             <div class="row">
-                <?php foreach($hotels as $hotel) { ?>
-                    <div class="col-12 my-2">
-                        <?php echo $hotel['name']; ?>
-                        <ul>
-                            <li>
-                                <?php echo 'Descrizione : '.$hotel['description']; ?>
-                            </li>
-                            <li>
-                                <?php echo 'Parcheggio : '.$hotel['parking'] == true ? 'Si' : 'No'; ?>
-                            </li>
-                            <li>
-                                <?php echo 'Voto : '.$hotel['vote']; ?>
-                            </li>
-                            <li>
-                                <?php echo 'Distanza dal centro : '.$hotel['distance_to_center'].' km'; ?>
-                            </li>
-                        </ul>
-                    </div>
-                <?php } ?>
+                <h3 class="text-center my-4">Filtra gli hotel!</h3>
+
+                
+
+                <!-- Tabella -->
+                <div class="col-12">
+                    <table class="table table-striped table-primary">
+                        <thead>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Parcheggio</th>
+                            <th>Voto</th>
+                            <th>Distanza dal centro</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($hotels as $hotel) { ?>
+                                <tr>
+                                    <td> <?php echo $hotel['name'] ?></td>
+                                    <td> <?php echo $hotel['description'] ?></td>
+                                    <td> <?php echo $hotel['parking'] == true ? 'Si' : 'No' ?></td>
+                                    <td> <?php echo $hotel['vote'] ?></td>
+                                    <td> <?php echo $hotel['distance_to_center'].' km' ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <?php include "./partials/templates/footer.php"; ?>
+
 </body>
 </html>
