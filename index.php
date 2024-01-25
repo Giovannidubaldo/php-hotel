@@ -1,6 +1,6 @@
 <!-- LOGICA DI LAVORO -->
 <?php
-
+    include __DIR__."/partials/vars.php";
 ?>
 
 <!-- LOGICA DI VISUALIZZAZIONE -->
@@ -15,6 +15,38 @@
     <title>Php Hotel</title>
 </head>
 <body>
-    
+
+    <!-- HEADER -->
+    <?php include "./partials/templates/header.php"; ?>
+
+    <!-- MAIN -->
+    <main>
+        <div class="container">
+            <div class="row">
+                <?php foreach($hotels as $hotel) { ?>
+                    <div class="col-12 my-2">
+                        <?php echo $hotel['name']; ?>
+                        <ul>
+                            <li>
+                                <?php echo 'Descrizione : '.$hotel['description']; ?>
+                            </li>
+                            <li>
+                                <?php echo 'Parcheggio : '.$hotel['parking'] == true ? 'Si' : 'No'; ?>
+                            </li>
+                            <li>
+                                <?php echo 'Voto : '.$hotel['vote']; ?>
+                            </li>
+                            <li>
+                                <?php echo 'Distanza dal centro : '.$hotel['distance_to_center'].' km'; ?>
+                            </li>
+                        </ul>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <?php include "./partials/templates/footer.php"; ?>
 </body>
 </html>
