@@ -1,6 +1,20 @@
 <!-- LOGICA DI LAVORO -->
 <?php
     include __DIR__."/partials/vars.php";
+
+    // Filtraggio per voto
+
+    if(isset($_GET['voto'])){
+        $filter_hotel = [];
+        foreach($hotels as $hotel){
+            if($hotel['vote'] >= $_GET['voto']){
+                $filter_hotel[] = $hotel;
+            }
+        }
+    }
+    else{
+        $filter_hotel = $hotels;
+    }
 ?>
 
 <!-- LOGICA DI VISUALIZZAZIONE -->
@@ -25,7 +39,17 @@
             <div class="row">
                 <h3 class="text-center my-4">Filtra gli hotel!</h3>
 
-                
+                <!-- Filtraggio per voto -->
+                <form action="./index.php" class="my-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="text" id="voto" name="voto" class="form-control form-control-sm" placeholder="Filtra per voto...">
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-sm btn-primary">Filtra</button>
+                        </div>
+                    </div>
+                </form>
 
                 <!-- Tabella -->
                 <div class="col-12">
@@ -38,7 +62,7 @@
                             <th>Distanza dal centro</th>
                         </thead>
                         <tbody>
-                            <?php foreach($hotels as $hotel) { ?>
+                            <?php foreach($filter_hotel as $hotel) { ?>
                                 <tr>
                                     <td> <?php echo $hotel['name'] ?></td>
                                     <td> <?php echo $hotel['description'] ?></td>
@@ -47,6 +71,11 @@
                                     <td> <?php echo $hotel['distance_to_center'].' km' ?></td>
                                 </tr>
                             <?php } ?>
+                            <?php if($filter_hotel == []){ ?>
+                                <tr>
+                                    <td colspan="5"> <?php echo "Nessun risultato trovato" ; ?> </td>
+                                </tr>
+                                <?php }?>
                         </tbody>
                     </table>
                 </div>
